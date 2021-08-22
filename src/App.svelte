@@ -1,5 +1,5 @@
 <script>
-	export let repository = "https://onesync-dmn.firebase.app";
+	export let repository = "https://onesync-dmn.firebase.app/";
 
 	import "smelte/src/tailwind.css";
 

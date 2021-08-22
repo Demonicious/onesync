@@ -11,10 +11,14 @@
 
     let isMine = (uid == $user.details.uid);
 
-    console.log(isMine, uid, $user.details.uid);
+    function scrollIntoView(node) {
+        node.scrollIntoView({
+            behavior: 'smooth'
+        })
+    }
 </script>
 
-<div id={id} class="message m-3 flex mb-3 { isMine ? 'justify-end' : '' }">
+<div use:scrollIntoView id={id} class="message m-3 flex mb-3 { isMine ? 'justify-end' : '' }">
     <div class={ isMine ? 'order-2 ml-2' : 'mr-2' }>
         <Tooltip>
             <img slot="activator" src={photoURL} alt={displayName} class="inline-block w-12 h-12 rounded-full">

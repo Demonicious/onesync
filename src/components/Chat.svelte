@@ -12,8 +12,7 @@
     import { subscribeCollection, writeDocument } from "$services/firestore.js";
     import { logout } from "$services/auth.js";
 
-    let messages = [];
-
+    let messages    = [];
     let message     = '';
     let displayName = $user.details.displayName;
     let error       = false;
@@ -98,6 +97,20 @@
 
 <style>
     div[slot=text] {
-        height: 100%;
+        height: calc(100vh - 17em);
+        overflow-y: auto;
+    }
+
+    div[slot=text]::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    div[slot=text]::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    div[slot=text]::-webkit-scrollbar-thumb {
+        background: #a83131;
+        border-radius: 0 50px 50px 0;
     }
 </style>
