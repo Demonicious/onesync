@@ -1,8 +1,11 @@
 <script>
+	export let repository = "https://onesync-dmn.firebase.app";
+
 	import "smelte/src/tailwind.css";
 
 	import user from "$stores/user.js";
 	import room from "$stores/room.js";
+	import repo from "$stores/repo.js";
 
 	import Home from "$layouts/Home.svelte";
 	import Dashboard from "$layouts/Dashboard.svelte";
@@ -14,6 +17,8 @@
 	import Chat from "$components/Chat.svelte";
 
     import ProgressCircular from "smelte/src/components/ProgressCircular";
+
+	$repo = repository;
 </script>
 
 {#if !$room.id}
