@@ -10,6 +10,7 @@
 
     import { logout } from "$services/auth.js";
     import { getDocument, queryWhereDocuments, writeDocument } from "$services/firestore.js";
+    import { write } from "$services/realtime.js";
 
     let roomId  = '';
     let sending = false;
@@ -60,6 +61,14 @@
                     });
 
                     if(doc) {
+                        await write('rooms/' + doc.id, {
+                            name: 'one-piece',
+                            chapter: 1,
+                            page: 1,
+                            totalPages: 15,
+                            operator: $user.details.uid
+                        });
+
                         $room = {
                             id: doc.id,
                             operator: $user.details.uid,

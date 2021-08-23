@@ -1,5 +1,5 @@
 import app from "./app.js";
-import { getFirestore, doc, collection, onSnapshot, getDoc, getDocs, query, where, addDoc } from "@firebase/firestore";
+import { getFirestore, doc, collection, onSnapshot, getDoc, getDocs, query, where, addDoc, serverTimestamp, orderBy } from "@firebase/firestore";
 
 const db = getFirestore(app);
 
@@ -12,9 +12,12 @@ export const subscribeDocument = (params, callback) => onSnapshot(
 )
 
 export const subscribeCollection = (params, callback) => onSnapshot(
-    collection(
+    query(
+        collection(
         db,
         ...params
+        ),
+        orderBy('timestamp', 'asc')
     ),
     snap => callback(snap)
 )
@@ -32,7 +35,8 @@ export const queryWhereDocuments = async(params, whereQuery) => getDocs(
             db,
             ...params
         ),
-        where(...whereQuery)
+        where(...whereQuery),
+        orderBy('timestamp', 'asc')
     )
 )
 
@@ -41,5 +45,8 @@ export const writeDocument = async (params, data) => addDoc(
         db,
         ...params
     ),
-    data
+    {
+        ...data,
+        timestamp: serverTimestamp()
+    }
 );

@@ -26,7 +26,8 @@
             uid: change.doc.get('uid'),
             message: change.doc.get('message'),
             displayName: change.doc.get('displayName'),
-            photoURL: change.doc.get('photoURL')
+            photoURL: change.doc.get('photoURL'),
+            timestamp: change.doc.get('timestamp')
         }))];
     })
 
@@ -38,7 +39,7 @@
                 message,
                 displayName,
                 photoURL: $user.details.photoURL,
-                uid: $user.details.uid
+                uid: $user.details.uid,
             }
 
             message = '';
